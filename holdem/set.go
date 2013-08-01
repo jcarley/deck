@@ -5,27 +5,10 @@ package holdem
 
 import (
 	"fmt"
-	"sort"
 	"strings"
 
 	"github.com/jteeuwen/deck"
 )
-
-// A card set; sortable by value.
-type ValueSet Set
-
-func (s ValueSet) Sort()              { sort.Sort(s) }
-func (s ValueSet) Len() int           { return len(s) }
-func (s ValueSet) Less(i, j int) bool { return s[i].Value() < s[j].Value() }
-func (s ValueSet) Swap(i, j int)      { s[i], s[j] = s[j], s[i] }
-
-// A card set; sortable by suit.
-type SuitSet Set
-
-func (s SuitSet) Sort()              { sort.Sort(s) }
-func (s SuitSet) Len() int           { return len(s) }
-func (s SuitSet) Less(i, j int) bool { return s[i].Suit() < s[j].Suit() }
-func (s SuitSet) Swap(i, j int)      { s[i], s[j] = s[j], s[i] }
 
 // A set represents a subset of cards.
 // Either in a players hands or on the table, or both.
