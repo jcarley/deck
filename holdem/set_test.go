@@ -151,6 +151,6 @@ func TestSet(t *testing.T) {
 			t.Fatalf("Hand mismatch: Want %v, have %v", tc.Hand, hand)
 		}
 
-		println(set.String(), hand.String())
+		//println(set.String(), score, hc, hand.String())
 	}
 }
