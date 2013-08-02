@@ -130,7 +130,7 @@ func (d *Deck) Reset() {
 	}
 }
 
-// Returns the amount of available cards lfet in the deck.,
+// Returns the amount of available cards left in the deck.
 func (d *Deck) Count() int {
 	var n int
 
