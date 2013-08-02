@@ -102,8 +102,7 @@ func (d *Deck) Pop() Card {
 // Shuffle shuffles the cards in the deck using a
 // cryptographic random number generator.
 //
-// The count parameter denotes how often you want
-// to shuffle the entire deck.
+// The count parameter denotes how often the deck should be shuffled.
 func (d *Deck) Shuffle(count int) {
 	var bi *big.Int
 	var idx int64
