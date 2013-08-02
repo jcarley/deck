@@ -11,14 +11,6 @@ import (
 const NoCard = 0xff // No card can have this value.
 
 // A Deck represents a single deck of cards.
-//
-// Each card is represented as a single unsigned, 8-bit integer
-// With the following bit layout:
-//
-//    [0, 1, 2, 3]: The card value (0-12).
-//          [4, 5]: The suit it belongs to (0-3).
-//             [6]: Is the card in play or not?
-//             [7]: Unused.
 type Deck struct {
 	list [52]Card
 }
