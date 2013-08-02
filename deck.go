@@ -130,3 +130,16 @@ func (d *Deck) Reset() {
 		d.list[i].unuse()
 	}
 }
+
+// Returns the amount of available cards lfet in the deck.,
+func (d *Deck) Count() int {
+	var n int
+
+	for _, c := range d.list {
+		if !c.Inuse() {
+			n++
+		}
+	}
+
+	return n
+}
