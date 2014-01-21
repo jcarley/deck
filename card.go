@@ -9,7 +9,7 @@ import "strconv"
 //
 //     bits 0-3: The card value (0-12).
 //     bits 4-5: The suit (0-3).
-//     bit    6: Card is in use or not.
+//     bit    6: <reserved for future use>
 //     bit    7: <reserved for future use>
 type Card uint8
 
@@ -23,15 +23,6 @@ func (c Card) Value() uint8 { return uint8(c & 15) }
 
 // Suit returns the suit for this card.
 func (c Card) Suit() Suit { return Suit(c >> 4 & 3) }
-
-// Inuse returns whether or not a card is in use.
-func (c Card) Inuse() bool { return (c>>6)&1 != 0 }
-
-// use marks the card as used
-func (c *Card) use() { *c |= Card(1 << 6) }
-
-// unuse marks the card as unused
-func (c *Card) unuse() { *c &^= Card(1 << 6) }
 
 func (c Card) String() string {
 	num := uint8(c&15) + 1
