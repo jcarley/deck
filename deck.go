@@ -55,25 +55,19 @@ func (d *Deck) Pop() Card {
 }
 
 // Shuffle shuffles the cards in the deck using a
-// cryptographic random number generator.
+// cryptographic random number generator and KnuthShuffle algorithm.
 //
 // The count parameter denotes how often the deck should be shuffled.
 func (d Deck) Shuffle(count int) {
-	var bi *big.Int
-	var idx int64
-	var c, i int
-
-	max := big.NewInt(int64(len(d)))
-
 	if count <= 0 {
 		count = 1
 	}
 
-	for c = 0; c < count; c++ {
-		for i = 0; i < len(d); i++ {
-			bi, _ = rand.Int(rand.Reader, max)
-			idx = bi.Int64()
-			d[i], d[idx] = d[idx], d[i]
+	for c := 0; c < count; c++ {
+		for a := 0; a < len(d); a++ {
+			ri, _ := rand.Int(rand.Reader, big.NewInt(int64(a)+1))
+			b := ri.Int64()
+			d[a], d[b] = d[b], d[a]
 		}
 	}
 }
