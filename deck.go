@@ -4,8 +4,7 @@
 package deck
 
 import (
-	"crypto/rand"
-	"math/big"
+	"math/rand"
 )
 
 const NoCard = 0xff // No card can have this value.
@@ -16,6 +15,7 @@ type Deck []Card
 // New creates a new card deck.
 func New() Deck {
 	d := make(Deck, 0, 52)
+
 	d.Reset()
 	return d
 }
@@ -54,21 +54,12 @@ func (d *Deck) Pop() Card {
 	return card
 }
 
-// Shuffle shuffles the cards in the deck using a
-// cryptographic random number generator and KnuthShuffle algorithm.
-//
-// The count parameter denotes how often the deck should be shuffled.
-func (d Deck) Shuffle(count int) {
-	if count <= 0 {
-		count = 1
-	}
-
-	for c := 0; c < count; c++ {
-		for a := 0; a < len(d); a++ {
-			ri, _ := rand.Int(rand.Reader, big.NewInt(int64(a)+1))
-			b := ri.Int64()
-			d[a], d[b] = d[b], d[a]
-		}
+// Shuffle shuffles the cards in the deck using the
+// Knuth shuffle algorithm.
+func (d Deck) Shuffle(rng *rand.Rand) {
+	for a := 0; a < len(d); a++ {
+		b := rng.Int31n(int32(a) + 1)
+		d[a], d[b] = d[b], d[a]
 	}
 }
 
